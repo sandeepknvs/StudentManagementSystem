@@ -96,5 +96,34 @@ public class Person {
 			return false;
 		}
 	}
+	
+	protected boolean updateInformation(String newAddress)
+	{
+		if(validateAddress(newAddress)) 
+		{
+			this.address = newAddress;
+			System.out.println("Address Updated Successfully...");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	protected boolean updateInformation(String newContactNumber, boolean update)
+	{
+		if(validateContactNumber(newContactNumber))
+		{
+			this.contactNumber = newContactNumber;
+			System.out.println("Address and ContactNumber Updated Successfully...");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
 
 }
