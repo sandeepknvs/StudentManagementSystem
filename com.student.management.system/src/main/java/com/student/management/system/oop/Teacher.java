@@ -216,6 +216,28 @@ public class Teacher extends Person {
 		System.out.println("Expected Salary: "+salary+"$");
 	}
 	
+	public boolean updateInformation(String newAddress, String newContactNumber)
+	{
+		System.out.println("Notifying HR for Approval");
+		boolean hrApproval = getHRApproval();
+		
+		if(hrApproval)
+		{
+			if(super.updateInformation(newAddress, newContactNumber))
+			{
+				System.out.println("Notifying the teacher that information is updated..");
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public boolean getHRApproval()
+	{
+		return true;
+	}
+	
 	
 	
 }

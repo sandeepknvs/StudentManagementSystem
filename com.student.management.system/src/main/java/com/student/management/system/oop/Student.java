@@ -336,4 +336,33 @@ public class Student extends Person{
 		System.out.println("Grade: "+grade);
 	}
 	
+	public boolean updateInformation(String newAddress, String newContactNumber)
+	{
+		System.out.println("Requesting Parent approval");
+		boolean parentApprovalStatus = parentApproval();
+		if(parentApprovalStatus)
+		{
+			if(super.updateInformation(newAddress, newContactNumber))
+			{
+				System.out.println("Notifying the Parent...");
+				return true;
+			}
+			else
+			{
+				System.err.println("No Approval from Parent...");
+				return false;
+			}
+			
+		}
+		
+		return false;
+	}
+	
+
+	
+	public boolean parentApproval()
+	{
+		return true;
+	}
+	
 }

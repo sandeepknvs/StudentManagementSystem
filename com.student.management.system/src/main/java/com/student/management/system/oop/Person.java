@@ -81,5 +81,20 @@ public class Person {
 			return true;
 		}
 	}
+	
+	protected boolean updateInformation(String newAddress, String newContactNumber)
+	{
+		if(validateAddress(newAddress) && validateContactNumber(newContactNumber))
+		{
+			this.address = newAddress;
+			this.contactNumber = newContactNumber;
+			System.out.println("Address and ContactNumber Updated Successfully...");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }
