@@ -143,43 +143,10 @@ public class Student extends Person{
 		{
 			grade = "Grade Cannot Be Calculated";
 		}
-		else if(percentage >= 95)
-		{
-			grade="A+";
-		}
-		else if(percentage >= 90)
-		{
-			grade="A";
-		}
-		else if(percentage >= 85)
-		{
-			grade="B+";
-		}
-		else if(percentage >= 80)
-		{
-			grade="B";
-		}
-		else if(percentage >= 75)
-		{
-			grade="C+";
-		}
-		else if(percentage >= 70)
-		{
-			grade="C";
-		}
-		else if(percentage >= 65)
-		{
-			grade="D+";
-		}
-		else if(percentage >= 60)
-		{
-			grade="D";
-		}
 		else
 		{
-			grade="F";
+			grade = GradePolicy.calculateGrade(percentage);
 		}
-
 	}
 
 	public String getName() {
