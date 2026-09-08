@@ -9,12 +9,22 @@ public class Runner {
 		student.updateInformation("Hyderabd", "8639772569");
 		student.updateInformation("8977007301",true);
 		student.displayStudentInfo();
+		Student.getTotalStudentCount();
 		
 		Teacher teacher = new Teacher("Philippines English Teacher",25,"8639772569","Hyderabad","T999","English",5,"English");
 		teacher.updateInformation("hyd", "8639772569");
 		teacher.displayTeacherInfo();
 		teacher.updateInformation("8977007301",true);
 		teacher.displayTeacherInfo();
+		Teacher.getTotalTeacherCount();
+		
+		Person.getTotalPersonCount();
+		Teacher teacher2 = new Teacher("Philippines English Teacher",25,"8639772569","Hyderabad","T999","English",5,"English");
+		Teacher teacher3 = new Teacher("Philippines English Teacher",25,"8639772569","Hyderabad","T999","English",5,"English");
+		Person.getTotalPersonCount();
+		
+		
+		
 	}
 
 }

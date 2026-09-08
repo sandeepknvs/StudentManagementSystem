@@ -5,6 +5,7 @@ public class Person {
 	protected int age;
 	protected String contactNumber;
 	protected String address;
+	protected static int totalPersonCount;
 	public Person(String name, int age, String contactNumber, String address) {
 		super();
 		if(validateAddress(address) && validateContactNumber(contactNumber))
@@ -14,6 +15,7 @@ public class Person {
 		this.age = age;
 		this.contactNumber = contactNumber;
 		this.address = address;
+		totalPersonCount++;
 	}
 
 	}
@@ -122,6 +124,13 @@ public class Person {
 		{
 			return false;
 		}
+	}
+	
+	public static int getTotalPersonCount()
+	{
+		
+		//System.out.println("Total Person Count is "+totalPersonCount);
+		return totalPersonCount;
 	}
 	
 	

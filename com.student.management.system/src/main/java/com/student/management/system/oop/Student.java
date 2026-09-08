@@ -11,6 +11,7 @@ public class Student extends Person{
 	private String grade;
 	private double percentage;
 	private double totalMarks;
+	private static int totalStudentCount;
 	
 	
 
@@ -30,7 +31,7 @@ public class Student extends Person{
 		calculateTotalMarks();
 		calculatePercentage();
 		calculateGrade();
-		
+		totalStudentCount++;
 		
 	}
 	}
@@ -407,6 +408,12 @@ public class Student extends Person{
 	public boolean parentApproval()
 	{
 		return true;
+	}
+	
+	public static int getTotalStudentCount()
+	{
+		//System.out.println("Total Student Count is "+totalStudentCount);
+		return totalStudentCount;
 	}
 	
 }
