@@ -2,29 +2,27 @@ package com.student.management.system.oop;
 
 import java.util.Objects;
 
-public final class Student extends Person{
+public abstract class Student extends Person{
 	
 	private final int rollNumber;
 	private final double marksObtainedInEnglish;
 	private final double marksObtainedInMaths;
 	private final double marksObtainedInScience;
-	private String grade;
-	private final double percentage;
-	private final double totalMarks;
+	protected String grade;
+	protected double percentage;
+	protected final double totalMarks;
 	private static int totalStudentCount;
 	
 	
 
-	public Student(StudentBuilder studentBuilder)
+	protected Student(StudentBuilder studentBuilder)
 	{
-		super(studentBuilder.name,studentBuilder.age,studentBuilder.address,studentBuilder.contactNumber);
+		super(studentBuilder.name,studentBuilder.age,studentBuilder.contactNumber,studentBuilder.address);
 		this.rollNumber = studentBuilder.rollNumber;
 		this.marksObtainedInEnglish = studentBuilder.marksObtainedInEnglish;
 		this.marksObtainedInMaths = studentBuilder.marksObtainedInMaths;
 		this.marksObtainedInScience = studentBuilder.marksObtainedInScience;
 		totalMarks = calculateTotalMarks();
-		percentage = calculatePercentage();
-		grade = calculateGrade();
 		totalStudentCount++;
 	}
 	
@@ -144,10 +142,7 @@ public final class Student extends Person{
 	}
 
 
-	public final double calculatePercentage() {
-		double percentage = totalMarks/3;
-		return percentage;
-	}
+	public abstract double calculatePercentage(); 
 	
 	public final String calculateGrade()
 	{
@@ -288,6 +283,7 @@ public final class Student extends Person{
 		System.out.println("Age: "+age);
 		System.out.println("ContactNumber: "+contactNumber);
 		System.out.println("Address: "+address);
+		System.out.println("Roll No: "+rollNumber);
 		System.out.println("English Marks: "+marksObtainedInEnglish);
 		System.out.println("Science Marks: "+marksObtainedInScience);
 		System.out.println("Maths Marks: "+marksObtainedInMaths);
@@ -376,7 +372,7 @@ public final class Student extends Person{
 		return totalStudentCount;
 	}
 	
-	public static class StudentBuilder
+	public abstract static class StudentBuilder
 	{
 		//Optional
 		private int rollNumber;
@@ -422,11 +418,11 @@ public final class Student extends Person{
 			return this;
 		}
 		
-		public Student Build()
-		{
-			Student student = new Student(this);
-			return student;
-		}
+		public abstract Student Build();
+//		{
+//			Student student = new Student(this);
+//			return student;
+//		}
 		
 		private final boolean validateAge(int age)
 		{
