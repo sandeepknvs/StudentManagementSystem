@@ -133,6 +133,10 @@ public class Person {
 		return totalPersonCount;
 	}
 	
+	public static class PersonBuilder{
+		
+	}
+	
 	
 
 }

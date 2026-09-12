@@ -4,37 +4,48 @@ import java.util.Objects;
 
 public class Student extends Person{
 	
-	private int rollNumber;
-	private double marksObtainedInEnglish;
-	private double marksObtainedInMaths;
-	private double marksObtainedInScience;
+	private final int rollNumber;
+	private final double marksObtainedInEnglish;
+	private final double marksObtainedInMaths;
+	private final double marksObtainedInScience;
 	private String grade;
-	private double percentage;
-	private double totalMarks;
+	private final double percentage;
+	private final double totalMarks;
 	private static int totalStudentCount;
 	
 	
 
-
-	
-	
-
-	public Student(String name, int age, String contactNumber, String address, int rollNumber,
-			double marksObtainedInEnglish, double marksObtainedInMaths, double marksObtainedInScience) {
-		super(name, age, contactNumber, address);
-		if(validateAge(age) && validateRollNumber(rollNumber) && validateMarks(marksObtainedInScience) && validateMarks(marksObtainedInEnglish) && validateMarks(marksObtainedInMaths) && validateContactNumber(contactNumber) && validateAddress(address))
-		{
-		this.rollNumber = rollNumber;
-		this.marksObtainedInEnglish = marksObtainedInEnglish;
-		this.marksObtainedInMaths = marksObtainedInMaths;
-		this.marksObtainedInScience = marksObtainedInScience;
-		calculateTotalMarks();
-		calculatePercentage();
-		calculateGrade();
+	public Student(StudentBuilder studentBuilder)
+	{
+		super(studentBuilder.name,studentBuilder.age,studentBuilder.address,studentBuilder.contactNumber);
+		this.rollNumber = studentBuilder.rollNumber;
+		this.marksObtainedInEnglish = studentBuilder.marksObtainedInEnglish;
+		this.marksObtainedInMaths = studentBuilder.marksObtainedInMaths;
+		this.marksObtainedInScience = studentBuilder.marksObtainedInScience;
+		totalMarks = calculateTotalMarks();
+		percentage = calculatePercentage();
+		grade = calculateGrade();
 		totalStudentCount++;
-		
 	}
-	}
+	
+	
+
+//	public Student(String name, int age, String contactNumber, String address, int rollNumber,
+//			double marksObtainedInEnglish, double marksObtainedInMaths, double marksObtainedInScience) {
+//		super(name, age, contactNumber, address);
+//		if(validateAge(age) && validateRollNumber(rollNumber) && validateMarks(marksObtainedInScience) && validateMarks(marksObtainedInEnglish) && validateMarks(marksObtainedInMaths) && validateContactNumber(contactNumber) && validateAddress(address))
+//		{
+//		this.rollNumber = rollNumber;
+//		this.marksObtainedInEnglish = marksObtainedInEnglish;
+//		this.marksObtainedInMaths = marksObtainedInMaths;
+//		this.marksObtainedInScience = marksObtainedInScience;
+//		calculateTotalMarks();
+//		calculatePercentage();
+//		calculateGrade();
+//		totalStudentCount++;
+//		
+//	}
+//	}
 
 
 
@@ -133,12 +144,14 @@ public class Student extends Person{
 	}
 
 
-	public void calculatePercentage() {
-		percentage = totalMarks/3;
+	public double calculatePercentage() {
+		double percentage = totalMarks/3;
+		return percentage;
 	}
 	
-	public void calculateGrade()
+	public String calculateGrade()
 	{
+		String grade;
 		if(totalMarks == 0)
 		{
 			grade = "Grade Cannot Be Calculated";
@@ -147,6 +160,7 @@ public class Student extends Person{
 		{
 			grade = GradePolicy.calculateGrade(percentage);
 		}
+		return grade;
 	}
 
 	public String getName() {
@@ -223,12 +237,7 @@ public class Student extends Person{
 	}
 
 
-	public void setRollNumber(int rollNumber) {
-		if(rollNumber > 0 && rollNumber < 100)
-		{
-			this.rollNumber = rollNumber;
-		}
-	}
+	
 
 
 	public double getMarksObtainedInEnglish() {
@@ -237,14 +246,7 @@ public class Student extends Person{
 	}
 
 
-	public void setMarksObtainedInEnglish(double marksObtainedInEnglish) {
-		
-		if(marksObtainedInEnglish > 0 && marksObtainedInEnglish < 100)
-		{
-			this.marksObtainedInEnglish = marksObtainedInEnglish;
-		}
-		
-	}
+	
 
 
 	public double getMarksObtainedInMaths() {
@@ -252,12 +254,7 @@ public class Student extends Person{
 	}
 
 
-	public void setMarksObtainedInMaths(double marksObtainedInMaths) {
-		if(marksObtainedInMaths > 0 && marksObtainedInMaths < 100)
-		{
-			this.marksObtainedInMaths = marksObtainedInMaths;
-		}
-	}
+	
 
 
 	public double getMarksObtainedInScience() {
@@ -265,12 +262,7 @@ public class Student extends Person{
 	}
 
 
-	public void setMarksObtainedInScience(double marksObtainedInScience) {
-		if(marksObtainedInScience > 0 && marksObtainedInScience < 100)
-		{
-			this.marksObtainedInScience = marksObtainedInScience;
-		}
-	}
+	
 
 
 	public String getGrade() {
@@ -283,9 +275,10 @@ public class Student extends Person{
 	}
 
 
-	public void calculateTotalMarks()
+	public double calculateTotalMarks()
 	{
-		totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
+		 double totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
+		 return totalMarks;
 	}
 	
 	public void displayStudentInfo()
@@ -381,6 +374,103 @@ public class Student extends Person{
 	{
 		//System.out.println("Total Student Count is "+totalStudentCount);
 		return totalStudentCount;
+	}
+	
+	public static class StudentBuilder
+	{
+		//Optional
+		private int rollNumber;
+		private double marksObtainedInEnglish;
+		private double marksObtainedInMaths;
+		private double marksObtainedInScience;
+		//Mandatory
+		private String name;
+		private int age;
+		private String contactNumber;
+		private String address;
+		
+		public StudentBuilder(String name, int age, String contactNumber, String address) {
+			if(validateAge(age) && validateContactNumber(contactNumber) && validateAddress(address))
+			{
+			this.name = name;
+			this.age = age;
+			this.contactNumber = contactNumber;
+			this.address = address;
+			}
+		}
+		@Override
+		public String toString() {
+			return "StudentBuilder [rollNumber=" + rollNumber + ", marksObtainedInEnglish=" + marksObtainedInEnglish
+					+ ", marksObtainedInMaths=" + marksObtainedInMaths + ", marksObtainedInScience="
+					+ marksObtainedInScience + ", name=" + name + ", age=" + age + ", contactNumber=" + contactNumber
+					+ ", address=" + address + "]";
+		}
+		public StudentBuilder withRollNumber(int rollNumber) {
+			this.rollNumber = rollNumber;
+			return this;
+		}
+		public StudentBuilder withMarksObtainedInEnglish(double marksObtainedInEnglish) {
+			this.marksObtainedInEnglish = marksObtainedInEnglish;
+			return this;
+		}
+		public StudentBuilder withMarksObtainedInMaths(double marksObtainedInMaths) {
+			this.marksObtainedInMaths = marksObtainedInMaths;
+			return this;
+		}
+		public StudentBuilder withMarksObtainedInScience(double marksObtainedInScience) {
+			this.marksObtainedInScience = marksObtainedInScience;
+			return this;
+		}
+		
+		public Student Build()
+		{
+			Student student = new Student(this);
+			return student;
+		}
+		
+		public boolean validateAge(int age)
+		{
+			if(age > 10 && age < 21)
+			{
+				return true;
+			}
+			else
+			{
+				System.err.println("Not a Valid Age");
+				return false;
+			}
+		}
+		
+		public boolean validateContactNumber(String contactNumber)
+		{
+			if(contactNumber.matches("\\d{10}"))
+			{
+				return true;
+			}
+			else
+			{
+				System.err.println("Invalid PhoneNumber");
+				return false;
+			}
+		}
+		public boolean validateAddress(String address)
+		{
+			if(address.isEmpty() || address == "null")
+			{
+				
+				System.err.println("Invalid Address");
+				return false;
+				
+			}
+			else
+			{
+				return true;
+			}
+		}
+		
+
+		
+		
 	}
 	
 }
