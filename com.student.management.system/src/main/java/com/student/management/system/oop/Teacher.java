@@ -2,7 +2,7 @@ package com.student.management.system.oop;
 
 import java.util.Objects;
 
-public class Teacher extends Person {
+public final class Teacher extends Person {
 
 	private String employeeId;
 	private String subjectTheyTeach;
@@ -91,13 +91,7 @@ public class Teacher extends Person {
 	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(String employeeId) {
-		if(validateEmployeeId(employeeId))
-		{
-			this.employeeId = employeeId;
-		}
-		
-	}
+	
 	public boolean validateEmployeeId(String employeeId)
 	{
 		
@@ -175,7 +169,7 @@ public class Teacher extends Person {
 	public void setProfessionalDetails(String professionalDetails) {
 		this.professionalDetails = professionalDetails;
 	}
-	public double calculateSalary()
+	protected final double calculateSalary()
 	{
 		salary = (yearsOfExperience * EXPERIENCE_BONUS)+BASE_SALARY;
 		return salary;

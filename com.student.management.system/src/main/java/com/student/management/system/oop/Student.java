@@ -2,7 +2,7 @@ package com.student.management.system.oop;
 
 import java.util.Objects;
 
-public class Student extends Person{
+public final class Student extends Person{
 	
 	private final int rollNumber;
 	private final double marksObtainedInEnglish;
@@ -144,12 +144,12 @@ public class Student extends Person{
 	}
 
 
-	public double calculatePercentage() {
+	public final double calculatePercentage() {
 		double percentage = totalMarks/3;
 		return percentage;
 	}
 	
-	public String calculateGrade()
+	public final String calculateGrade()
 	{
 		String grade;
 		if(totalMarks == 0)
@@ -193,7 +193,7 @@ public class Student extends Person{
 		
 	}
 	
-	public boolean validateAge(int age)
+	private final boolean validateAge(int age)
 	{
 		if(age > 10 && age < 21)
 		{
@@ -205,7 +205,7 @@ public class Student extends Person{
 			return false;
 		}
 	}
-	public boolean validateRollNumber(int rollNumber)
+	private static boolean validateRollNumber(int rollNumber)
 	{
 		if(rollNumber > 0)
 		{
@@ -218,7 +218,7 @@ public class Student extends Person{
 		}
 	}
 	
-	public boolean validateMarks(double marksForTheSubject)
+	private final boolean validateMarks(double marksForTheSubject)
 	{
 		if(marksForTheSubject< 0 || marksForTheSubject > 100)
 		{
@@ -275,13 +275,13 @@ public class Student extends Person{
 	}
 
 
-	public double calculateTotalMarks()
+	public final double calculateTotalMarks()
 	{
 		 double totalMarks = marksObtainedInEnglish + marksObtainedInMaths + marksObtainedInScience;
 		 return totalMarks;
 	}
 	
-	public void displayStudentInfo()
+	public final void displayStudentInfo()
 	{
 		System.out.println("-----Student Info------");
 		System.out.println("Name: "+name);
@@ -428,7 +428,7 @@ public class Student extends Person{
 			return student;
 		}
 		
-		public boolean validateAge(int age)
+		private final boolean validateAge(int age)
 		{
 			if(age > 10 && age < 21)
 			{
@@ -441,7 +441,7 @@ public class Student extends Person{
 			}
 		}
 		
-		public boolean validateContactNumber(String contactNumber)
+		private final boolean validateContactNumber(String contactNumber)
 		{
 			if(contactNumber.matches("\\d{10}"))
 			{
@@ -453,7 +453,7 @@ public class Student extends Person{
 				return false;
 			}
 		}
-		public boolean validateAddress(String address)
+		private final boolean validateAddress(String address)
 		{
 			if(address.isEmpty() || address == "null")
 			{

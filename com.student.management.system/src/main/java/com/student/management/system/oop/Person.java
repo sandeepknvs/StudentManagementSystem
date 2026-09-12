@@ -1,6 +1,6 @@
 package com.student.management.system.oop;
 
-public class Person {
+public abstract class Person {
 	protected String name;
 	protected int age;
 	protected String contactNumber;
