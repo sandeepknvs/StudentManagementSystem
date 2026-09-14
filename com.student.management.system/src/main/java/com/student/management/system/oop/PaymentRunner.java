@@ -26,6 +26,10 @@ public class PaymentRunner {
 		p3.calculatePayment();
 		p3.generateReceipt();
 		System.out.println(p3.discountValue());
+		System.out.println(PaymentMode.CARD.getDescription());
+		PaymentMode p4 = PaymentMode.valueOf("UPI");
+		System.out.println(p4);
+		
 	}
 
 }
