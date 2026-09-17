@@ -65,8 +65,7 @@ public abstract class Person {
 		}
 		else
 		{
-			System.err.println("Invalid PhoneNumber");
-			return false;
+			throw new InvalidContactNumberException("invalid contact numbers");
 		}
 	}
 	public boolean validateAddress(String address)
@@ -74,8 +73,7 @@ public abstract class Person {
 		if(address.isEmpty() || address == "null")
 		{
 			
-			System.err.println("Invalid Address");
-			return false;
+			throw new InvalidAddressException("Address is Empty or Null");
 			
 		}
 		else

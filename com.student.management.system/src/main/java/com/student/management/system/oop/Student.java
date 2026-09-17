@@ -111,8 +111,7 @@ public abstract class Student extends Person{
 		}
 		else 
 		{	
-			System.err.println("Not a Valid Contact Number");
-			return false;
+			throw new InvalidContactNumberException("Contact Number is NULL or not matching contact");
 		}
 	}
 
@@ -136,8 +135,8 @@ public abstract class Student extends Person{
 			return true;
 		}
 		else
-		{	System.err.println("Not a Valid Address");
-			return false;
+		{	
+			throw new InvalidAddressException("Address is null");
 		}
 	}
 
@@ -196,8 +195,7 @@ public abstract class Student extends Person{
 		}
 		else
 		{
-			System.err.println("Not a Valid Age");
-			return false;
+			throw new InvalidAgeException("Not a valid Age");
 		}
 	}
 	private static boolean validateRollNumber(int rollNumber)
@@ -208,8 +206,7 @@ public abstract class Student extends Person{
 		}
 		else
 		{
-			System.err.println("Not a Valid RollNumber");
-			return false;
+			throw new InvalidRollNumberException("Not a valid Roll Number");
 		}
 	}
 	
@@ -217,8 +214,7 @@ public abstract class Student extends Person{
 	{
 		if(marksForTheSubject< 0 || marksForTheSubject > 100)
 		{
-			System.err.println("Not a Valid Marks");
-			return false;
+			throw new InvalidMarksException("Not a valid Marks");
 		}
 		else
 		{
@@ -402,8 +398,13 @@ public abstract class Student extends Person{
 					+ ", address=" + address + "]";
 		}
 		public StudentBuilder withRollNumber(int rollNumber) {
-			this.rollNumber = rollNumber;
+			if(validateRollNumber(rollNumber))
+			{
+				this.rollNumber = rollNumber;
+				
+			}
 			return this;
+
 		}
 		public StudentBuilder withMarksObtainedInEnglish(double marksObtainedInEnglish) {
 			this.marksObtainedInEnglish = marksObtainedInEnglish;
@@ -432,11 +433,21 @@ public abstract class Student extends Person{
 			}
 			else
 			{
-				System.err.println("Not a Valid Age");
-				return false;
+				throw new InvalidAgeException("Not a Valid Age");
 			}
 		}
 		
+		private static boolean validateRollNumber(int rollNumber)
+		{
+			if(rollNumber > 0)
+			{
+				return true;
+			}
+			else
+			{
+				throw new InvalidRollNumberException("Not a valid Roll Number");
+			}
+		}
 		private final boolean validateContactNumber(String contactNumber)
 		{
 			if(contactNumber.matches("\\d{10}"))
@@ -445,8 +456,7 @@ public abstract class Student extends Person{
 			}
 			else
 			{
-				System.err.println("Invalid PhoneNumber");
-				return false;
+				throw new InvalidContactNumberException("Not a valid contact number");
 			}
 		}
 		private final boolean validateAddress(String address)
@@ -454,8 +464,7 @@ public abstract class Student extends Person{
 			if(address.isEmpty() || address == "null")
 			{
 				
-				System.err.println("Invalid Address");
-				return false;
+				throw new InvalidAddressException("Not a valid Address");
 				
 			}
 			else

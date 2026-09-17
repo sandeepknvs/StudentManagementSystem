@@ -58,8 +58,7 @@ public final class Teacher extends Person {
 		}
 		else
 		{
-			System.err.println("Not a Valid Age");
-			return false;
+			throw new InvalidAgeException("Not a valid range");
 		}
 	}
 	
@@ -81,8 +80,7 @@ public final class Teacher extends Person {
 		}
 		else 
 		{	
-			System.err.println("Not a Valid Contact Number");
-			return false;
+			throw new InvalidContactNumberException("Not a valid Contact Number");
 		}
 	}
 
@@ -101,8 +99,7 @@ public final class Teacher extends Person {
 		}
 		else
 		{
-			System.err.println("Not a Valid Employee Number");
-			return false;
+			throw new InvalidEmpIdException("Not a valid EmpId");
 		}
 	}
 	public String getAddress() {
@@ -124,8 +121,7 @@ public final class Teacher extends Person {
 			return true;
 		}
 		else
-		{	System.err.println("Not a Valid Address");
-			return false;
+		{	throw new InvalidAddressException("Not a valid Address");
 		}
 	}
 
@@ -155,8 +151,7 @@ public final class Teacher extends Person {
 		}
 		else
 		{
-			System.err.println("Not a Valid Experience");
-			return false;
+			throw new InvalidExperienceException("Not a valid Experience");
 		}
 	}
 	public double getSalary() {
